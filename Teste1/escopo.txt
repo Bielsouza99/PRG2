@@ -1,0 +1,101 @@
+Escreva um programa para um jogo de bingo para uma quantidade arbitrária de jogadores. Nesse programa, 
+cada jogador recebe uma cartela (um conjunto de números), as quais são escolhidas aleatoriamente pelo 
+computador. Em seguida, o programa sorteia um número por rodada, marcando as cartelas dos jogadores 
+caso contenham esse número. O programa termina quando a primeira cartela for preenchida, 
+apresentando o nome do jogador na tela.
+
+Você tem liberdade de definir a interface do seu programa (quer dizer, como ele interage com os jogadores).
+
+A entrega deve ser composta de um arquivo compactado contendo o seguinte:
+
+Um arquivo de texto contendo:
+Uma descrição sobre como funciona o programa, acompanhada de uma manual de utilização
+Uma resposta para cada uma destas perguntas:
+O que foi efetivamente realizado ?
+O que faltou realizar ?
+O que o impediu de realizar plenamente o exercício ?
+Um arquivo de projeto CLion contendo o código-fonte do programa
+
+struct Jogador {
+    nome,
+    cartela,
+    acertos
+};
+
+func addJog(nome) {
+    for(i = 0; i < 8; i++) {
+        cartela[i] = srand();
+    }
+
+    cartela = 0;
+}
+
+func init() {
+    do{
+
+    }while(acertos < 8);
+}
+
+main () {
+    cout << "Quantos jogadores terão no seu jogo?" << endl;
+    cin >> nJog;
+
+    for(int i = 0; i < nJog; i++){
+        cin >> nome;
+    }
+}
+
+void createGamer(Jogador *jogadores, int nJogadores)
+{
+    Jogador jog;
+    int cart[tamCartela];
+
+    for (int i = 0; i < nJogadores; i++)
+    {
+        cout << "Digite o nome do jogador " << i << ": ";
+        cin >> jog.nome;
+
+        for (int j = 0; j < tamCartela; j++)
+        {
+            //srand(time(NULL));
+            int n = rand() % 100;
+            jog.cartela[j] = n;
+        }
+
+        jogadores[i] = jog;
+    }
+    for (int k = 0; k < nJogadores; k++)
+    {
+        printJogador(jogadores[k]);
+    }
+}
+
+// int generateCartela(int numbers[], int size) {
+//     int randomN;
+//     bool found;
+
+//     numbers[0] = rand() % 100;
+
+//     for(int i = 0; i < size; i++){
+//         do{
+//             randomN = rand() % 100;
+//             found = false;
+
+//             for(int j = 0; j < size; j++) {
+//                 if(randomN == numbers[j]){
+//                     found = true;
+//                     randomN = numbers[i];
+//                 }
+//             }
+//         }while(found != false);
+//     }
+
+//     for(int k = 0; k < size; k++) {
+//         cout << numbers[k] << " ";
+//     }
+// }
+
+
+            //cout << "\n"
+            //   << jogadores[index].acertos;
+            //cout << endl;
