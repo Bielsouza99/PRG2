@@ -27,35 +27,13 @@ void printJogador(Jogador jogador)
 
 int generateRandomNumber()
 {
-    //srand(time(NULL));
-    //int generateSeed = (rand() % 10 + 1);
-    int randomN = rand() % 100;
+    int randomN = rand() % 100 + 1;
     return randomN;
-}
-
-bool verifyOut(int *numeros, int num)
-{
-    bool saiu = false;
-
-    for (int i = 0; i < 100; i++)
-    {
-        if (numeros[i] == num)
-        {
-            saiu = true;
-        }
-        else
-        {
-            saiu = false;
-        }
-    }
-
-    return saiu;
 }
 
 void init(Jogador *jogadores, int nJogadores)
 {
     Jogador jog;
-    int cart[tamCartela];
 
     for (int i = 0; i < nJogadores; i++)
     {
@@ -64,7 +42,7 @@ void init(Jogador *jogadores, int nJogadores)
 
         for (int j = 0; j < tamCartela; j++)
         {
-            int n = rand() % 100;
+            int n = rand() % 100 + 1;
             for (int k = 0; k < tamCartela; k++)
             {
                 if (jog.cartela[k] == n)
@@ -87,27 +65,11 @@ void init(Jogador *jogadores, int nJogadores)
 
     bool ganhador = false;
     int ctrl = 0;
+    int tam = 100;
     while (!ganhador)
     {
-        
-        int arrWin[100];
-
-        int randomN;
-        for(ctrl; ctrl < 100; ctrl++){
-            int randomN = generateRandomNumber();
-            for(int l = 0; l < 100; l++){
-                if(randomN == arrWin[l]){
-                    int newRandomN = generateRandomNumber();
-                    arrWin[l] = newRandomN;
-                }else {
-                    arrWin[l] = randomN;
-                }
-            }
-        }
-
-
-
-
+        int randomN = generateRandomNumber();
+        int arrWin[tam];
 
         for (int index = 0; index < nJogadores; index++)
         {
@@ -117,12 +79,12 @@ void init(Jogador *jogadores, int nJogadores)
             {
                 if (arr[aux] == randomN)
                 {
-                    cout << "A cartela de " << jogadores[index].nome << " tem " << arr[aux] << "? ";
-                    cout << "Sim"
+                    cout << "A cartela de " << jogadores[index].nome << " tem " << arr[aux] << " ";
+                    cout << "- Acertos: "
                          << " ";
-                    jogadores[index].acertos = jogadores[index].acertos + 1;
+                    jogadores[index].acertos += 1;
                     cout << jogadores[index].acertos << endl;
-
+                    arr[aux] = 0;
                     if (jogadores[index].acertos == 8)
                     {
                         ganhador = true;
@@ -132,6 +94,7 @@ void init(Jogador *jogadores, int nJogadores)
                 }
             }
         }
+        ctrl++;
     }
 }
 
@@ -141,6 +104,5 @@ int main()
     cout << "Digite o número de jogadores da partida: ";
     cin >> nJogadores;
     Jogador jogs[nJogadores];
-    int cartela[tamCartela];
     init(jogs, nJogadores);
 }

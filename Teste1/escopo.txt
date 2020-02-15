@@ -99,3 +99,99 @@ void createGamer(Jogador *jogadores, int nJogadores)
             //cout << "\n"
             //   << jogadores[index].acertos;
             //cout << endl;
+            
+
+int arrWin[tam];
+        int randomN;
+        for(int l = 0; l < tam; l++){
+            randomN = generateRandomNumber();
+            for(int m = 0; m < tam; m++){
+                if(arrWin[m] == randomN){
+                    int newRandomN = generateRandomNumber();
+                    arrWin[l] = newRandomN;
+                    randomN = newRandomN;
+                    break;
+                } else {
+                    arrWin[l] = randomN;
+                    break;
+                }
+            }
+        }
+
+
+
+for (int index = 0; index < nJogadores; index++)
+        {
+            auto arr = jogadores[index].cartela;
+
+            for (int aux = 0; aux < tamCartela; aux++)
+            {
+                if (arr[aux] == randomN)
+                {
+                    cout << "A cartela de " << jogadores[index].nome << " tem " << arr[aux] << "? ";
+                    cout << "Sim"
+                         << " ";
+                    jogadores[index].acertos += 1; 
+                    cout << jogadores[index].acertos << endl;
+
+                    if (jogadores[index].acertos == 8)
+                    {
+                        ganhador = true;
+                        cout << "O vencedor do jogo foi: " << jogadores[index].nome << endl;
+                        break;
+                    }
+                }
+            }
+        }
+        ctrl++;
+    }
+
+    for(int l = 0; l < tam; l++){
+            randomN = rand() % 100;
+            for(int a = 0; a < tam; a++){
+                if(arrWin[a] == randomN){
+                    int newRandomN = generateRandomNumber();
+                    arrWin[l] = newRandomN;
+                    randomN = newRandomN;
+                }else {
+                    arrWin[l] = randomN;
+                }
+            }
+        }
+
+        //for(int h = 0; h < tam; h++){
+          //  cout << arrWin[h] << " ";
+        //}
+        cout << endl;
+
+        for(int t = 0; t < tam; t++){
+                        if(arrWin[t] == randomN){
+                            jogadores[index].acertos = jogadores[index].acertos;
+                            break;
+                        }else {
+                            
+                            break;
+                        }
+                        break;
+                    }
+
+                    bool verifyOut(int *numeros, int num)
+{
+    bool saiu = false;
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (numeros[i] == num)
+        {
+            saiu = true;
+            break;
+        }
+        else
+        {
+            saiu = false;
+            break;
+        }
+    }
+
+    return saiu;
+}
