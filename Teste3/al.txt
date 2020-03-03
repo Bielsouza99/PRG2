@@ -1,0 +1,14 @@
+Um programa para copiar arquivos em lote
+Escreva um programa que copie um conjunto de arquivos para dentro de um determinado diretório.
+
+O programa a ser escrito deve receber como dados de entrada o diretório de destino e os nomes dos arquivos a serem copiados. O diretório de destino deve ser lido do teclado, seguido então dos nomes dos arquivos. Quando o usuário digitar uma linha vazia (pressionar somente ENTER), então o programa faz a cópia dos arquivos.
+
+A entrega deve ser composta de um arquivo compactado contendo o seguinte:
+
+Um arquivo de texto contendo:
+Uma descrição sobre como funciona o programa, acompanhada de uma manual de utilização
+Uma resposta para cada uma destas perguntas:
+O que foi efetivamente realizado ?
+O que faltou realizar ?
+O que o impediu de realizar plenamente o exercício ?
+Um arquivo de projeto CLion contendo o código-fonte do programa
