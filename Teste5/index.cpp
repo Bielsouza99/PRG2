@@ -12,11 +12,11 @@ struct Aluno
 
     bool operator<(const Aluno &novoAluno)
     {
-        if (matricula == novoAluno.matricula)
+        if (nome == novoAluno.nome)
         {
-            return nome < novoAluno.nome;
+            return matricula < novoAluno.matricula;
         }
-        return matricula < novoAluno.matricula;
+        return nome < novoAluno.nome;
     }
 };
 
@@ -31,25 +31,33 @@ void mostra_aluno(Aluno aluno)
     cout << "Matrícula: " << aluno.matricula << endl;
 }
 
-void verifica_repetidos(list<Aluno> alunos) {}
-
-void normalizar_lista(list<Aluno> alunos) {}
-
 int main(int argc, char *argv[])
 {
     string linha;
     list<Aluno> alunos;
-    fstream arq("alunos1.txt");
-    while (getline(arq, linha))
+    for (int i = 1; i < argc; i++)
     {
-        Aluno al;
-        int pos = linha.find(" ");
-        al.matricula = linha.substr(0, pos);
-        al.nome = linha.substr(pos + 1, string::npos);
-        alunos.push_back(al);
+        fstream arq(argv[i]);
+        while (getline(arq, linha))
+        {
+            Aluno al;
+            int pos = linha.find(" ");
+            al.matricula = linha.substr(0, pos);
+            al.nome = linha.substr(pos + 1, string::npos);
+            alunos.push_back(al);
+        }
     }
-    cout << alunos.size() << endl;
+
     alunos.sort();
+
+    cout << alunos.size() << endl;
+    for (auto &students : alunos) {
+        mostra_aluno(students);
+    }
+
+    cout << endl << endl << endl << endl;
+
+    
     alunos.unique();
     for (auto &student : alunos)
     {
