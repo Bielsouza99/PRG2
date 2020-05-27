@@ -1,0 +1,16 @@
+Sérgio,Florianópolis,Chapecó,10:00,23:00
+Pedro,Blumenau,Florianópolis,12:30,16:10
+Pablo,Balneário Camboriú,Brusque,14:30,15:40
+André,Criciúma,Itapema,10:00,15:00
+Roberto,Itapema,Xanxerê,07:00,17:00
+João,Joinville,Tubarão,14:00,20:00
+Márcio,Concórdia,São Joaquim,14:30,15:40
+Gabriel,Caxias do Sul,São Miguel D'Oeste,10:00,23:00
+Matheus,Itajaí,Joaçaba,13:30,20:00
+Alisson,Pato Branco,Brusque,14:30,15:40
+Bernardo,Passo Fundo,Santa Rosa,07:00,11:00
+Renan,Porto União,Florianópolis,13:00,21:30
+Anderson,Urubici,Jaraguá do Sul,16:00,21:00
+Rodrigo,Dionísio Cerqueira,Joaçaba,14:00,19:00
+Carlos,Videira,Maravilha,12:30,16:10
+Jonas,Joaçaba,Lages,20:00,23:00
