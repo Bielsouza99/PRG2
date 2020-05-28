@@ -54,7 +54,7 @@ void mostrar_viagens(Viagem bus)
 }
 
 void mostrar_passageiros(Passageiro passageiro) {
-    cout << "Nome: " << passageiro.nome << "\n Assento: " << passageiro.n_assento << " ";
+    cout << passageiro.nome << " ";
 }
 
 void mostrar_assentos(unordered_map<int,Passageiro> &passageiros) {
@@ -64,10 +64,11 @@ void mostrar_assentos(unordered_map<int,Passageiro> &passageiros) {
     }
 }
 
-void mostrar_lugares(unordered_map<int, bool> &lugares) {
+void mostrar_lugares(unordered_map<int, bool> &lugares, unordered_map<int, Passageiro> &passageiros) {
     for(auto &par: lugares) {
         if(!par.second) {
-            cout << par.first << ". OCUPADO" << endl;
+            cout << par.first << ". ";
+            mostrar_assentos(passageiros);
         } else {
             cout << par.first << ". LIVRE" << endl;
         }
@@ -111,7 +112,7 @@ void criar_viagem()
 void reservar()
 {
     Passageiro viajante;
-    Viagem trecho;
+    Viagem *trecho;
     int lugar;
     float n_onibus;
 
@@ -120,11 +121,10 @@ void reservar()
 
     for (auto & viagem: viagens) {
         if(n_onibus == viagem.first) {
-            trecho = viagem.second;
+            trecho = &viagem.second;
             break;
         }
     }
-    mostrar_viagens(trecho);
 
     cout << "Escolha seu assento de 0 a 42: ";
     cin >> lugar;
@@ -132,22 +132,16 @@ void reservar()
     if(lugar >= 42) {
         cout << "Nossos ônibus possuem apenas 43 lugares, favor escolher uma poltrona de 0 a 42" << endl;
     } else {
-        if(trecho.lugares[lugar]) {
+        if(trecho -> lugares[lugar]) {
             viajante.n_assento = lugar;
-            cout << trecho.lugares[lugar] << endl;
-            trecho.lugares[lugar] = false;
-            cout << trecho.lugares[lugar] << endl;
+            trecho -> lugares[lugar] = false;
             cout << "Digite seu nome para reservar o assento: ";
             cin >> viajante.nome;
-
-            trecho.passageiros[generate_id_passageiro()] = viajante;
+            trecho -> passageiros[generate_id_passageiro()] = viajante;
         } else {
             cout << "Esse lugar já está ocupado ou está indisponível nessa viagem." << endl;
         }
     }
-    // cout << trecho.lugares[lugar] << endl;
-    mostrar_lugares(trecho.lugares);
-    trecho.lugares = trecho.lugares;
 }
 
 void mostrar_reserva()
@@ -167,8 +161,8 @@ void mostrar_reserva()
         cout << "Desculpe não encontrei o ônibus com o número " << n_onibus << endl;
     }
 
-    mostrar_lugares(trecho.lugares);
-    mostrar_assentos(trecho.passageiros);
+    mostrar_lugares(trecho.lugares, trecho.passageiros);
+    //mostrar_assentos(trecho.passageiros);
 }
 
 void viagens_disponiveis()
