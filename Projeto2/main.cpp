@@ -144,7 +144,7 @@ void reservar()
     }
 }
 
-void mostrar_reserva()
+void info_viagem()
 {
     Viagem trecho;
     int id_passageiro;
@@ -158,11 +158,19 @@ void mostrar_reserva()
             trecho = viagem.second;
             break;
         }
-        cout << "Desculpe não encontrei o ônibus com o número " << n_onibus << endl;
     }
 
+    mostrar_viagens(trecho);
+    cout << endl << endl << endl;
     mostrar_lugares(trecho.lugares, trecho.passageiros);
     //mostrar_assentos(trecho.passageiros);
+}
+
+void mostrar_reserva() {
+    
+    Viagem trecho;
+    int id_passageiro;
+    float n_onibus;
 }
 
 void viagens_disponiveis()
@@ -195,7 +203,7 @@ void menu()
             reservar();
             break;
         case 3:
-            mostrar_reserva();
+            info_viagem();
             break;
         case 4:
             viagens_disponiveis();
