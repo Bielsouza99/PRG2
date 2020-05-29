@@ -38,14 +38,16 @@ menu() {
 struct Passageiro
 {
     string nome;
-    int n_assento;
+    string sobrenome;
+    string nomeCompleto;
+    int nAssento;
 };
 
 struct Viagem
 {
-    string nome_motorista;
-    string hora_saida;
-    string hora_chegada;
+    string nomeMotorista;
+    string horaSaida;
+    string horaChegada;
     string origem;
     string destino;
     unordered_map<int,Passageiro> passageiros;
@@ -67,5 +69,69 @@ As viagens são representadas pelo tipo de dados Viagem criado por nós programa
 Os passageiros são representados por um tipo de dados chamado Passageiro e armazenados em uma unordered_map<int, Passageiro> dentro da struct Viagem
 
 ## Funcionalidades do programa
+```
 
+criaIdPassageiro() {
+    retorna um inteiro aleatório entre 1 - 100
+}
 
+criaIdViagem() {
+    retorna um float aleatório entre 4000 - 14000
+}
+
+criaLugares(unordered_map<int,bool> &lugares) {
+    recebe a tabela hash da struct Viagem que representa os lugares
+    inicialmente cria a chave com valores inteiros de 0 a 42 e o valor = true
+}
+
+criaNomeCompleto(string nome, string sobrenome) {
+    retorna nome + " " + sobrenome;
+}
+
+mostrarViagens(Viagem bus) {
+    printa as informações do ônibus passado como parâmetro de maneira previamente decidida
+}
+
+mostrarPassageiro(unordered_map<int, Passageiro> & passageiros, int id_passageiro) {
+    printa as informações do passageiro com o ID correspondente ao passado no parâmetro da função de maneira previamente decidida
+}
+
+mostrarPassageiros(Passageiro passageiro) {
+    printa o nome completo do passageiro
+}
+
+mostrarAssentos(unordered_map<int,Passageiro> &passageiros) {
+
+}
+
+criarViagem() {
+    abre o arquivo de texto
+    procura a vírgula a partir da posição da anterior+1
+    criaLugares()
+    e seta a chave da tabela hash global (viagens) chamando a  função criaIdViagem() e o valor como o onibus criado com os parametros lidos do arquivo de texto
+}
+
+reservar() {
+    pergunta ao usuário o n° do ônibus
+    o assento que ele deseja
+    se ele tiver vazio (true), seta para falso
+    se ele estiver ocupado, avisa o usuário que o lugar está ocupado e chama o menu novamente
+    pergunta o nome e sobrenome do usuário
+    chama criaNomeCompleto(nome, sobrenome)
+    printa o ID para conhecimento do usuário
+
+}
+
+infoViagem() {
+    printa as informações da viagem e a situação dos assentos
+}
+
+infoReserva() {
+    pergunta ao usuário o n° do ônibus e seu ID para informar seu nome e seu assento
+}
+
+viagensDisponiveis() {
+    printa todas as viagens com origem, destino, nome do motorista, hora de saída e previsão de chegada
+}
+
+```
