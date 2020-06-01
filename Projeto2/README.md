@@ -7,23 +7,26 @@ O projeto 2 tem como objetivo criar um programa que o usuário poderá reservar 
 ## Algoritmo
 Trabalharemos utilizando a memória do programa, criando uma tabela hash (unordered_map) como variável global, faremos todas as operações em cima dela, essa tabela hash possui como chave um float que será o número do veículo que realizará a viagem e como valor um tipo específico criado por nós programadores, essa que por sua vez possui um atributo também do tipo unordered_map com um outro tipo de dados definido por nós como valor e novamente uma variável do tipo int como chave.
 
-Ao iniciar o programa o usuário irá se deparar com o menu, onde irá possuir 5 opções de seleção:
+Ao iniciar o programa o usuário irá se deparar com o menu, onde irá possuir 6 opções de seleção:
 
-1 - Criar Viagem
+
+*1 - Criar Viagem
     Chamará a função permitindo que o usuário crie uma viagem
-2 - Reservar assento
+*2 - Reservar assento
     Permitirá que o usuário possa reservar seu assento no ônibus, desde que o mesmo não esteja ocupado por outro passageiro
-3 - Informações da viagem
+*3 - Informações da viagem
     Usuário poderia visualizar seu assento reservado e quantos lugares ainda há disponível no ônibus
-4 - Viagens disponíveis
+*4 - Viagens disponíveis
     Mostrará as viagens que estão disponíves no programa naquele momento
-5 - Sair
+*5 - Informações da reserva
+    Mostrará ao usuário o nome completo de quem reservou, seu ID e o número do seu assento
+*6 - Sair
     Encerra o programa
 
 
 ## Pseudocódigo
 
-...
+```
 
 menu() {
     Pergunta qual opção o usuário deseja
@@ -31,10 +34,11 @@ menu() {
     chama a função relacionada opção
 }
 
+```
+
 ## Novos tipos de dados
 
-...
-
+```
 struct Passageiro
 {
     string nome;
@@ -54,7 +58,7 @@ struct Viagem
     unordered_map<int, bool> lugares;
 };
 
-...
+```
 
 ## Projeto final
 
