@@ -10,17 +10,17 @@ Trabalharemos utilizando a memória do programa, criando uma tabela hash (unorde
 Ao iniciar o programa o usuário irá se deparar com o menu, onde irá possuir 6 opções de seleção:
 
 
-*1 - Criar Viagem
+* 1 - Criar Viagem
     Chamará a função permitindo que o usuário crie uma viagem
-*2 - Reservar assento
+* 2 - Reservar assento
     Permitirá que o usuário possa reservar seu assento no ônibus, desde que o mesmo não esteja ocupado por outro passageiro
-*3 - Informações da viagem
+* 3 - Informações da viagem
     Usuário poderia visualizar seu assento reservado e quantos lugares ainda há disponível no ônibus
-*4 - Viagens disponíveis
+* 4 - Viagens disponíveis
     Mostrará as viagens que estão disponíves no programa naquele momento
-*5 - Informações da reserva
+* 5 - Informações da reserva
     Mostrará ao usuário o nome completo de quem reservou, seu ID e o número do seu assento
-*6 - Sair
+* 6 - Sair
     Encerra o programa
 
 
