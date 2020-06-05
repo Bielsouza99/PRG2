@@ -254,12 +254,50 @@ void viagensDisponiveis()
     }
 }
 
+void buscarViagemOrigem() {
+
+    string cidOrigem;
+    list<Viagem> trechos;
+
+    cout << "Digite a cidade de origem que você deseja consultar as viagens disponíveis: ";
+    cin >> cidOrigem;
+
+    for(auto &par: viagens) {
+        if(cidOrigem == par.second.origem) {
+            trechos.push_back(par.second);
+        }
+    }
+
+    for(auto &l: trechos) {
+        mostrarViagens(l);
+    }
+}
+
+void buscarViagemDestino() {
+
+    string cidDestino;
+    list<Viagem> trechos;
+
+    cout << "Digite a cidade de destino que você deseja consultar as viagens disponíveis: ";
+    cin >> cidDestino;
+
+    for(auto &par: viagens) {
+        if(cidDestino == par.second.destino) {
+            trechos.push_back(par.second);
+        }
+    }
+
+    for(auto &l: trechos) {
+        mostrarViagens(l);
+    }
+}
+
 void menu()
 {
     while (true)
     {
         int escolha;
-        cout << " \t\t\t 1. Criar viagem\n\t\t\t 2. Reservar assento\n\t\t\t 3. Informações de viagem\n\t\t\t 4. Viagens disponíveis\n\t\t\t 5. Informações da sua reserva\n\t\t\t 6. Sair\n\t\t\t" << endl;
+        cout << " \t\t\t 1. Criar viagem\n\t\t\t 2. Reservar assento\n\t\t\t 3. Informações de viagem\n\t\t\t 4. Viagens disponíveis\n\t\t\t 5. Informações da sua reserva\n\t\t\t 6. Buscar viagens pela origem\n\t\t\t 7. Buscar viagens pelo destino\n\t\t\t 8. Sair\n\t\t\t" << endl;
         cout << "Escolha uma opção:\n>> ";
         cin >> escolha;
 
@@ -281,6 +319,12 @@ void menu()
             infoReserva();
             break;
         case 6:
+            buscarViagemOrigem();
+            break;
+        case 7:
+            buscarViagemDestino();
+            break;
+        case 8:
             break;
         default:
             cout << "Você não escolheu nenhuma das opções listadas" << endl;
