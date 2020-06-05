@@ -24,21 +24,23 @@ struct Viagem
     string horaChegada;
     string origem;
     string destino;
-    unordered_map<int,Passageiro> passageiros;
+    unordered_map<int, Passageiro> passageiros;
     unordered_map<int, bool> lugares;
 };
 
 unordered_map<int, Viagem> viagens;
 
-float criaIdPassageiro() {
+float criaIdPassageiro()
+{
     return (random() % 100) + 1;
 }
 
-float criaIdViagem() {
+float criaIdViagem()
+{
     return (random() % 10000) + 4000;
 }
 
-unordered_map<int,bool> criaLugares(unordered_map<int,bool> &lugares)
+unordered_map<int, bool> criaLugares(unordered_map<int, bool> &lugares)
 {
     int lug = 0;
     while (lug < 43)
@@ -50,7 +52,8 @@ unordered_map<int,bool> criaLugares(unordered_map<int,bool> &lugares)
     return lugares;
 }
 
-string criaNomeCompleto(string nome, string sobrenome) {
+string criaNomeCompleto(string nome, string sobrenome)
+{
     string nomeCompleto = nome + " " + sobrenome;
     return nomeCompleto;
 }
@@ -60,9 +63,12 @@ void mostrarViagens(Viagem bus)
     cout << "Partindo de " << bus.origem << " com destino " << bus.destino << " sai às " << bus.horaSaida << " e chega " << bus.horaChegada << endl;
 }
 
-void mostrarPassageiro(unordered_map<int, Passageiro> & passageiros, int id_passageiro) {
-    for(auto &p: passageiros) {
-        if(p.first == id_passageiro) {
+void mostrarPassageiro(unordered_map<int, Passageiro> &passageiros, int id_passageiro)
+{
+    for (auto &p : passageiros)
+    {
+        if (p.first == id_passageiro)
+        {
             auto po = p.second;
             cout << "ID: " << p.first << endl;
             cout << "Nome completo: " << po.nomeCompleto << endl;
@@ -71,23 +77,31 @@ void mostrarPassageiro(unordered_map<int, Passageiro> & passageiros, int id_pass
     }
 }
 
-void mostrarPassageiros(Passageiro passageiro) {
+void mostrarPassageiros(Passageiro passageiro)
+{
     cout << passageiro.nomeCompleto << " ";
 }
 
-void mostrarAssentos(unordered_map<int,Passageiro> &passageiros) {
-    for(auto &par: passageiros) {
+void mostrarAssentos(unordered_map<int, Passageiro> &passageiros)
+{
+    for (auto &par : passageiros)
+    {
         mostrarPassageiros(par.second);
         cout << endl;
     }
 }
 
-void mostrarLugares(unordered_map<int, bool> &lugares, unordered_map<int, Passageiro> &passageiros) {
-    for(auto &par: lugares) {
-        if(!par.second) {
+void mostrarLugares(unordered_map<int, bool> &lugares, unordered_map<int, Passageiro> &passageiros)
+{
+    for (auto &par : lugares)
+    {
+        if (!par.second)
+        {
             cout << par.first << ". ";
             mostrarAssentos(passageiros);
-        } else {
+        }
+        else
+        {
             cout << par.first << ". LIVRE" << endl;
         }
     }
@@ -99,7 +113,8 @@ void criarViagem()
     fstream arq("data/viagens1.txt");
     string linha;
 
-    while(getline(arq, linha)) {
+    while (getline(arq, linha))
+    {
         int pos = 0, pos1;
         pos1 = linha.find(",");
         bus.nomeMotorista = linha.substr(pos, pos1);
@@ -120,7 +135,8 @@ void criarViagem()
         viagens[criaIdViagem()] = bus;
     }
 
-    for(auto &par: viagens) {
+    for (auto &par : viagens)
+    {
         cout << "Ônibus de número " << par.first << ": ";
         mostrarViagens(par.second);
         cout << endl;
@@ -132,92 +148,106 @@ void reservar()
     Passageiro viajante;
     Viagem *trecho;
     int lugar;
-    float n_onibus;
+    float nOnibus;
 
     cout << "Digite o número do ônibus que realizará sua viagem: ";
-    cin >> n_onibus;
+    cin >> nOnibus;
 
-    for (auto & viagem: viagens) {
-        if(n_onibus == viagem.first) {
+    for (auto &viagem : viagens)
+    {
+        if (nOnibus == viagem.first)
+        {
             trecho = &viagem.second;
-            break;
+            cout << "Escolha seu assento de 0 a 42: ";
+            cin >> lugar;
+
+            if (lugar >= 42)
+            {
+                cout << "Nossos ônibus possuem apenas 43 lugares, favor escolher uma poltrona de 0 a 42" << endl;
+            }
+            else
+            {
+                if (trecho->lugares[lugar])
+                {
+                    viajante.nAssento = lugar;
+                    trecho->lugares[lugar] = false;
+                    cout << "Certo, agora preciso do seu nome e sobrenome para reservar seu assento na viagem." << endl;
+                    cout << "Nome: ";
+                    cin >> viajante.nome;
+                    cout << "Sobrenome: ";
+                    cin >> viajante.sobrenome;
+                    viajante.nomeCompleto = criaNomeCompleto(viajante.nome, viajante.sobrenome);
+                    int id_passageiro = criaIdPassageiro();
+                    trecho->passageiros[id_passageiro] = viajante;
+                    cout << "Seu ID é: " << id_passageiro << ". Salve-o para consultar sua reserva quando quiser." << endl;
+                }
+                else
+                {
+                    cout << "Esse lugar já está ocupado ou está indisponível nessa viagem." << endl;
+                }
+            }
         }
     }
-
-    cout << "Escolha seu assento de 0 a 42: ";
-    cin >> lugar;
-
-    if(lugar >= 42) {
-        cout << "Nossos ônibus possuem apenas 43 lugares, favor escolher uma poltrona de 0 a 42" << endl;
-    } else {
-        if(trecho -> lugares[lugar]) {
-            viajante.nAssento = lugar;
-            trecho -> lugares[lugar] = false;
-            cout << "Certo, agora preciso do seu nome e sobrenome para reservar seu assento na viagem." << endl;
-            cout << "Nome: ";
-            cin >> viajante.nome;
-            cout << "Sobrenome: ";
-            cin >> viajante.sobrenome;
-            viajante.nomeCompleto = criaNomeCompleto(viajante.nome, viajante.sobrenome);
-            int id_passageiro = criaIdPassageiro();
-            trecho -> passageiros[id_passageiro] = viajante;
-            cout << "Seu ID é: " << id_passageiro << ". Salve-o para consultar sua reserva quando quiser." << endl;
-        } else {
-            cout << "Esse lugar já está ocupado ou está indisponível nessa viagem." << endl;
-        }
-    }
+    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
 void infoViagem()
 {
     Viagem trecho;
-    int id_passageiro;
-    float n_onibus;
+    float nOnibus;
 
     cout << "Digite o número do ônibus que realizará sua viagem: ";
-    cin >> n_onibus;
+    cin >> nOnibus;
 
-    for (auto & viagem: viagens) {
-        if(n_onibus == viagem.first) {
+    for (auto &viagem : viagens)
+    {
+        if (nOnibus == viagem.first)
+        {
             trecho = viagem.second;
             break;
         }
     }
 
+    cout << endl;
     mostrarViagens(trecho);
-    cout << endl << endl << endl;
+    cout << endl;
     mostrarLugares(trecho.lugares, trecho.passageiros);
-    //mostrar_assentos(trecho.passageiros);
+
+    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
-void infoReserva() {
-    
+void infoReserva()
+{
+
     Viagem trecho;
-    int id_passageiro;
-    float n_onibus;
+    int idPassageiro;
+    float nOnibus;
 
     cout << "Digite o número do ônibus que realizará sua viagem: ";
-    cin >> n_onibus;
+    cin >> nOnibus;
     cout << "Digite o seu ID de passageiro: ";
-    cin >> id_passageiro;
+    cin >> idPassageiro;
 
-    for (auto & viagem: viagens) {
-        if(n_onibus == viagem.first) {
+    for (auto &viagem : viagens)
+    {
+        if (nOnibus == viagem.first)
+        {
             trecho = viagem.second;
             break;
         }
     }
 
-    mostrarPassageiro(trecho.passageiros, id_passageiro);
-
+    mostrarPassageiro(trecho.passageiros, idPassageiro);
+    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
 void viagensDisponiveis()
 {
-    
+
     cout << "Mostrando viagens disponíveis.." << endl;
 
-    for(auto &par: viagens) {
+    for (auto &par : viagens)
+    {
         cout << "Ônibus de número " << par.first << ": ";
         mostrarViagens(par.second);
         cout << endl;
