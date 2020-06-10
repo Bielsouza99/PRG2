@@ -14,3 +14,11 @@ Anderson,Urubici,Jaraguá do Sul,16:00,21:00
 Rodrigo,Dionísio Cerqueira,Joaçaba,14:00,19:00
 Carlos,Videira,Maravilha,12:30,16:10
 Jonas,Joaçaba,Lages,20:00,23:00
+Irã,Florianópolis,Joinville,11:00,15:00
+José,Passo Fundo,Joinville,12:00,20:00
+Tiago,Florianópolis,Lages,13:00,16:00
+Douglas,Florianópolis,Urubici,15:00,18:00
+Marcelo,Brusque,Criciúma,18:00,22:00
+Gustavo,Chapecó,Itajaí,08:00,16:00
+Juan,Caxias do Sul,Florianópolis,14:00,20:00
+Caio,Itapema,Passo Fundo,14:00,22:00

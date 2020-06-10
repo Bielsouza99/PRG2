@@ -30,6 +30,18 @@ struct Viagem
 
 unordered_map<int, Viagem> viagens;
 
+string transformaParaMinusculas(string p) {
+    string p1;
+    int i = 0;
+    char c;
+    while(p[i]) {
+        c = p[i];
+        p1[i] = putchar(tolower(c));
+        i++;
+    }
+    return p1;
+}
+
 float criaIdPassageiro()
 {
     return (random() % 100) + 1;
@@ -107,7 +119,7 @@ void mostrarLugares(unordered_map<int, bool> &lugares, unordered_map<int, Passag
     }
 }
 
-void criarViagem()
+void criarViagens()
 {
     Viagem bus;
     fstream arq("data/viagens1.txt");
@@ -188,7 +200,7 @@ void reservar()
             }
         }
     }
-    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
+    // cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
 void infoViagem()
@@ -213,7 +225,7 @@ void infoViagem()
     cout << endl;
     mostrarLugares(trecho.lugares, trecho.passageiros);
 
-    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
+    // cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
 void infoReserva()
@@ -238,7 +250,6 @@ void infoReserva()
     }
 
     mostrarPassageiro(trecho.passageiros, idPassageiro);
-    cout << "Não encontrei a viagem com ônibus que possua o número " << nOnibus << ". Você pode consultar o número dos ônibus selecionando a opção 4: Viagens disponíveis." << endl;
 }
 
 void viagensDisponiveis()
@@ -254,15 +265,17 @@ void viagensDisponiveis()
     }
 }
 
-void buscarViagemOrigem() {
+void buscarViagensOrigem() {
 
     string cidOrigem;
     list<Viagem> trechos;
 
     cout << "Digite a cidade de origem que você deseja consultar as viagens disponíveis: ";
     cin >> cidOrigem;
+    // getline(cin,cidOrigem);
 
     for(auto &par: viagens) {
+
         if(cidOrigem == par.second.origem) {
             trechos.push_back(par.second);
         }
@@ -273,13 +286,14 @@ void buscarViagemOrigem() {
     }
 }
 
-void buscarViagemDestino() {
+void buscarViagensDestino() {
 
     string cidDestino;
     list<Viagem> trechos;
 
     cout << "Digite a cidade de destino que você deseja consultar as viagens disponíveis: ";
     cin >> cidDestino;
+    // getline(cin,cidDestino);
 
     for(auto &par: viagens) {
         if(cidDestino == par.second.destino) {
@@ -297,34 +311,31 @@ void menu()
     while (true)
     {
         int escolha;
-        cout << " \t\t\t 1. Criar viagem\n\t\t\t 2. Reservar assento\n\t\t\t 3. Informações de viagem\n\t\t\t 4. Viagens disponíveis\n\t\t\t 5. Informações da sua reserva\n\t\t\t 6. Buscar viagens pela origem\n\t\t\t 7. Buscar viagens pelo destino\n\t\t\t 8. Sair\n\t\t\t" << endl;
+        cout << " \t\t\t 1. Reservar assento\n\t\t\t 2. Informações de viagem\n\t\t\t 3. Viagens disponíveis\n\t\t\t 4. Informações da sua reserva\n\t\t\t 5. Buscar viagens pela origem\n\t\t\t 6. Buscar viagens pelo destino\n\t\t\t 7. Sair\n\t\t\t" << endl;
         cout << "Escolha uma opção:\n>> ";
         cin >> escolha;
 
         switch (escolha)
         {
         case 1:
-            criarViagem();
-            break;
-        case 2:
             reservar();
             break;
-        case 3:
+        case 2:
             infoViagem();
             break;
-        case 4:
+        case 3:
             viagensDisponiveis();
             break;
-        case 5:
+        case 4:
             infoReserva();
             break;
+        case 5:
+            buscarViagensOrigem();
+            break;
         case 6:
-            buscarViagemOrigem();
+            buscarViagensDestino();
             break;
         case 7:
-            buscarViagemDestino();
-            break;
-        case 8:
             break;
         default:
             cout << "Você não escolheu nenhuma das opções listadas" << endl;
@@ -335,6 +346,8 @@ void menu()
 
 int main()
 {
+    cout << transformaParaMinusculas("GaBRiEl") << endl;
+    criarViagens();
     menu();
     return 0;
 }
